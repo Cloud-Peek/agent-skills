@@ -10,16 +10,42 @@ Codex, Cursor, Copilot, Gemini CLI, and others.
 
 ## Installing
 
-Copy a skill directory into your agent's skills folder. For Claude Code that is
-`~/.claude/skills/` for personal use, or `.claude/skills/` inside a project:
+Use the [`skills` CLI](https://github.com/vercel-labs/skills), which reads GitHub
+directly — no registry publish step, and it detects which agents you have
+installed.
+
+See what's on offer:
 
 ```bash
-git clone https://github.com/<owner>/agent-skills
-cp -r agent-skills/skills/nist-plan ~/.claude/skills/
+npx skills add Cloud-Peek/agent-skills --list
 ```
 
-Each skill directory is self-contained — nothing is shared across them, so you can
-take one without taking the rest.
+Install one skill, or the whole set:
+
+```bash
+npx skills add Cloud-Peek/agent-skills --skill nist-plan   # just this one
+npx skills add Cloud-Peek/agent-skills                     # all of them
+```
+
+Skills install into the current project by default. Add `-g` to install to your
+user directory instead, so they're available in every project:
+
+```bash
+npx skills add Cloud-Peek/agent-skills --skill nist-plan -g
+```
+
+The CLI installs to whichever agents it finds. Target specific ones with `-a`, and
+remove a skill with `remove`:
+
+```bash
+npx skills add Cloud-Peek/agent-skills -a claude-code -a cursor
+npx skills remove nist-plan
+```
+
+Each skill directory is self-contained — nothing is shared between them, so taking
+one does not oblige you to take the rest. If you would rather not use the CLI, copy
+the directory into your agent's skills folder by hand (`~/.claude/skills/` for
+Claude Code, or `.claude/skills/` inside a project).
 
 ## Secure development (NIST SSDF)
 
