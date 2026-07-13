@@ -1,0 +1,4 @@
+interface:
+  display_name: "Issue feature Delivery"
+  short_description: "Take workflow issues from pickup to PR"
+  default_prompt: "Use $cloudpeek-workflow-feature to pick up a CloudPeek workflow-substrate GitHub issue and deliver it through planning, implementation, tests, review, and PR handoff."

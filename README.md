@@ -1,2 +1,69 @@
 # agent-skills
-Cloudpeek and CyberPeek agent skills
+
+CloudPeek and CyberPeek agent skills, published in the open
+[Agent Skills](https://agentskills.io) format.
+
+Every skill is a directory containing a `SKILL.md` (metadata plus instructions)
+and, where it needs them, `references/` files that the agent loads only when the
+task calls for them. Skills work in any skills-compatible agent — Claude Code,
+Codex, Cursor, Copilot, Gemini CLI, and others.
+
+## Installing
+
+Copy a skill directory into your agent's skills folder. For Claude Code that is
+`~/.claude/skills/` for personal use, or `.claude/skills/` inside a project:
+
+```bash
+git clone https://github.com/<owner>/agent-skills
+cp -r agent-skills/skills/nist-plan ~/.claude/skills/
+```
+
+Each skill directory is self-contained — nothing is shared across them, so you can
+take one without taking the rest.
+
+## Secure development (NIST SSDF)
+
+Six skills covering the phases of the NIST Secure Software Development Framework
+([SP 800-218](https://csrc.nist.gov/pubs/sp/800/218/final)). Each walks its phase,
+files a GitHub epic per practice, and never creates an issue without asking first.
+They file issues; they do not write code.
+
+| Skill | Phase | Practices |
+| --- | --- | --- |
+| [`nist-plan`](skills/nist-plan) | 1 — Plan & Requirements | PO.1, PO.2, PO.3, PO.4, PO.5 |
+| [`nist-design`](skills/nist-design) | 2 — Design | PW.1, PW.2, PW.4 |
+| [`nist-build`](skills/nist-build) | 3 — Build | PS.1, PW.5, PW.6 |
+| [`nist-test`](skills/nist-test) | 4 — Test | PW.7, PW.8 |
+| [`nist-release`](skills/nist-release) | 5 — Release | PS.2, PS.3, PW.9 |
+| [`nist-respond`](skills/nist-respond) | 6 — Operate & Respond | RV.1, RV.2, RV.3 |
+
+The 19 SSDF practices live as reference files inside the phase that owns them —
+`nist-plan/references/po1.md`, and so on. Practice text is quoted verbatim from
+NIST; the implementation notes beneath each task are guidance, written to be
+adapted to whatever repository the skill runs against.
+
+Start with the phase that matches where you actually are. The phases are a cycle,
+not a ladder: RV.3's root-cause findings are meant to flow back into PO.1's
+requirements.
+
+## Development workflow
+
+| Skill | What it does |
+| --- | --- |
+| [`implement-issue`](skills/implement-issue) | Take a GitHub issue from claim to draft PR — branch, plan, implement, validate, push |
+| [`feature-development-workflow`](skills/feature-development-workflow) | Deliver an issue from pickup to PR handoff, with review and regression tests |
+| [`plan-to-issue`](skills/plan-to-issue) | Turn an approved plan into a self-contained issue another agent can pick up cold |
+| [`pr-from-branch`](skills/pr-from-branch) | Draft a PR title, body, and labels from the current branch, then open it |
+| [`release-candidate-review`](skills/release-candidate-review) | Compare competing release-candidate PRs against their design PR and report which implemented each section best |
+| [`github-project-board`](skills/github-project-board) | Inspect and move cards on GitHub Projects v2 boards |
+| [`gh-release-train-merge`](skills/gh-release-train-merge) | Merge multiple PRs into a release branch, recording each as properly merged |
+
+## Utilities
+
+| Skill | What it does |
+| --- | --- |
+| [`prettify`](skills/prettify) | Turn a document or message into a self-contained HTML infographic |
+
+## License
+
+Apache-2.0. See [LICENSE](LICENSE).

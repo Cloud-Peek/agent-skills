@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Project Board"
+  short_description: "Move issues and PRs through project phases"
+  default_prompt: "Use $github-project-board to move a GitHub issue or PR through the right CloudPeek project phase."

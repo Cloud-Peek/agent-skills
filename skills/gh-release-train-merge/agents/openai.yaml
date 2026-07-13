@@ -1,0 +1,4 @@
+interface:
+  display_name: "GH Release Train Merge"
+  short_description: "Merge PRs into release branches safely"
+  default_prompt: "Use $gh-release-train-merge to merge these PRs into a release branch while keeping original PRs marked as merged."
